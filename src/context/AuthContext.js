@@ -24,18 +24,18 @@ const register = (name, email, password) => {
 };
 
 export const AuthProvider = ({ children }) => {
-  // const register = (name, email, password) => {
-  //   axios
-  //     .post(`${BASE_URL}/v1/parents/register`, {
-  //       "fullname":name,"email":email,"password":password
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((e) => {
-  //       console.log(`register error ${e}`);
-  //     });
-  // };
+  const register = (name, email, password) => {
+    axios
+      .post(`${BASE_URL}/v1/parents/register`, {
+        "fullname":name,"email":email,"password":password
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(`register error ${e}`);
+      });
+  };
 
   return (
     <AuthContext.Provider value={ register }>

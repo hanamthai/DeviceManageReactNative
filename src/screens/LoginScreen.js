@@ -1,15 +1,16 @@
 import React, {useContext, useState} from "react";
 import {Text, TextInput, View, Button, TouchableOpacity, StyleSheet} from "react-native"
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../components/context";
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const val = useContext(AuthContext);
+
+    const {signIn} = React.useContext(AuthContext);
+
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <Text>{val}</Text>
                 <TextInput 
                     style={styles.input} 
                     placeholder="Enter your email"
@@ -23,7 +24,7 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={text => setPassword(text)}
                 />
 
-                <Button title="Login"/>
+                <Button title="Login" onPress={() => {signIn()}}/>
                 <View style={{flexDirection: 'row', marginTop: 20}}>
                     <Text>Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>
