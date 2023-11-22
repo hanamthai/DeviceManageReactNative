@@ -7,15 +7,12 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-// import { AuthContext } from "../components/context";
 import { registerService } from "../services/LoginService";
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // const { signUp } = useState(AuthContext);
 
   handleRegister = async (name, email, password) => {
     if (email == "" || password == "" || name == "") {

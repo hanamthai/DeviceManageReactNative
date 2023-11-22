@@ -63,7 +63,7 @@ const App = () => {
         alert(err)
       }
       dispatch({type: "RETRIEVE_TOKEN", token: userToken});
-    }, 3000);
+    }, 2000);
   }, []);
 
   const authContext = React.useMemo(() => ({
@@ -73,6 +73,7 @@ const App = () => {
       try {
         userToken = token;
         await AsyncStorage.setItem('userToken', userToken);
+        await AsyncStorage.setItem('userName', userName);
       }
       catch(err) {
         alert(err)
@@ -86,6 +87,7 @@ const App = () => {
     signOut: async() => {
       try {
         await AsyncStorage.removeItem('userToken');
+        await AsyncStorage.removeItem('userName');
       }
       catch(err) {
         alert(err)
