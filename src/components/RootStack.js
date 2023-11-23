@@ -1,9 +1,9 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from '../screens/HomeScreen';
 import SettingScreen from '../screens/SettingScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ManageUserScreen from '../screens/ManageUser';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const RootStackScreen = ({navigation}) => (
     <Tab.Navigator>
         <Tab.Screen 
-            name="HomeScreen" 
+            name="Home Page" 
             component={HomeScreen} 
             options={{
                 tabBarLabel: 'Home',
@@ -21,13 +21,43 @@ const RootStackScreen = ({navigation}) => (
                   ),
             }} 
         />
+        <Tab.Screen
+            name="Manage Child"
+            component={ManageUserScreen}
+            options={{
+                tabBarLabel: 'Child',
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="account-group" color={color} size={size} />
+                  ),
+            }} 
+        />
+        <Tab.Screen
+            name="Manage Web History"
+            component={SettingScreen}
+            options={{
+                tabBarLabel: 'History',
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="history" color={color} size={size} />
+                  ),
+            }} 
+        />
+        <Tab.Screen
+            name="Manage Keyboard Stroke"
+            component={SettingScreen}
+            options={{
+                tabBarLabel: 'Keyboard',
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="keyboard" color={color} size={size} />
+                  ),
+            }} 
+        />
         <Tab.Screen 
-            name="SettingScreen" 
+            name="Setting Screen" 
             component={SettingScreen} 
             options={{
                 tabBarLabel: 'Setting',
                 tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="account" color={color} size={size} />
+                    <MaterialCommunityIcons name="progress-wrench" color={color} size={size} />
                   ),
             }}
         />

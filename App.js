@@ -12,9 +12,9 @@ const App = () => {
 
   const initLoginState = {
     isLoading: true,
-    userName: '',
-    userToken: '',
-    roleID: '',
+    userName: null,
+    userToken: null,
+    roleID: null,
   };
 
   const loginReducer = (prevState, action) => {
@@ -36,9 +36,9 @@ const App = () => {
       case 'LOGOUT':
         return {
           ...prevState,
-          userName: '',
-          userToken: '',
-          roleID: '',
+          userName: null,
+          userToken: null,
+          roleID: null,
           isLoading: false,
         };
       // case 'REGISTER':
@@ -109,7 +109,7 @@ const App = () => {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        {loginState.userToken != '' ? <RootStackScreen /> : <Navigation />}
+        {loginState.userToken != null ? <RootStackScreen /> : <Navigation />}
       </NavigationContainer>
     </AuthContext.Provider>
   );
