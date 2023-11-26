@@ -4,6 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SettingScreen from '../screens/SettingScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageUserScreen from '../screens/ManageUser';
+import WebHistoryScreen from '../screens/WebHistoryScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,7 @@ const RootStackScreen = ({navigation}) => (
         />
         <Tab.Screen
             name="Manage Web History"
-            component={SettingScreen}
+            component={WebHistoryScreen}
             options={{
                 tabBarLabel: 'History',
                 tabBarIcon: ({ color, size }) => (

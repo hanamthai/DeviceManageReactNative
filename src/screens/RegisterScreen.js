@@ -62,7 +62,7 @@ const RegisterScreen = ({ navigation }) => {
           }}
         />
 
-        <View style={{ flexDirection: "row", marginTop: 20 }}>
+        <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
           <Text>Already have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text style={styles.link}>Login</Text>

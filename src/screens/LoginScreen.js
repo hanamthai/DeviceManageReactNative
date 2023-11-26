@@ -74,7 +74,7 @@ const LoginScreen = ({ navigation }) => {
                         handleLogin(email, password);
                     }}
                 />
-                <View style={{ flexDirection: "row", marginTop: 20 }}>
+                <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between"}}>
                     <Text>Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate("Register")}>
                         <Text style={styles.link}>Register</Text>
