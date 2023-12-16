@@ -3,7 +3,7 @@ import { Text, Button, View, StyleSheet, FlatList, Modal, TouchableOpacity, Acti
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-import { UserInfoService, WebHistoryService } from "../services/UserManageService";
+import { KeyboardStrokeService, UserInfoService } from "../services/UserManageService";
 
 const data = [
     { label: '3 days', value: 3 },
@@ -13,7 +13,7 @@ const data = [
     { label: '30 days', value: 30 },
 ];
 
-const WebHistoryScreen = () => {
+const KeyboardStrokeScreen = () => {
     const [userAndDevices, setUserAndDevices] = React.useState([]);
     const [userData, setUserData] = React.useState([]);
     const [deviceData, setDeviceData] = React.useState([]);
@@ -21,7 +21,7 @@ const WebHistoryScreen = () => {
     const [selectedUser, setSelectedUser] = React.useState(null);
     const [selectedDevice, setSelectedDevice] = React.useState(null);
     const [selectedDays, setSelectedDays] = React.useState(null);
-    const [webHistoryInfo, setWebHistoryInfo] = React.useState([]);
+    const [keyboardStrokeInfo, setKeyboardStrokeInfo] = React.useState([]);
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [isModalVisible, setModalVisible] = React.useState(false);
@@ -56,16 +56,16 @@ const WebHistoryScreen = () => {
         }
     };
 
-    const handleWebHistory = async (childID, deviceID, days) => {
+    const handleKeyboardStroke = async (childID, deviceID, days) => {
         if (childID == null || deviceID == null || days == null) {
             alert("Please select all data!!")
         }
         try {
             setIsLoading(true);
-            const resp = await WebHistoryService(childID, deviceID, days);
+            const resp = await KeyboardStrokeService(childID, deviceID, days);
             setIsLoading(false);
             if (resp.data) {
-                setWebHistoryInfo(resp.data);
+                setKeyboardStrokeInfo(resp.data);
             }
         } catch (error) {
             setIsLoading(false);
@@ -103,7 +103,7 @@ const WebHistoryScreen = () => {
     }, [userInfoChoose]);
 
     console.log("selectedUser:", selectedUser, ", selectedDevice:", selectedDevice, ", selectedDays:", selectedDays)
-    console.log("webHistories:", webHistoryInfo)
+    console.log("webHistories:", keyboardStrokeInfo)
 
     const renderLabel = () => {
         if (isFocus) {
@@ -119,7 +119,7 @@ const WebHistoryScreen = () => {
         return (
             <TouchableOpacity onPress={() => handleRowPress(item)}>
                 <View style={styles.row}>
-                    <Text style={styles.url} numberOfLines={1} ellipsizeMode="tail">{item.url}</Text>
+                    <Text style={styles.key_stroke} numberOfLines={1} ellipsizeMode="tail">{item.key_stroke}</Text>
                     <Text style={styles.accessTime} numberOfLines={1} ellipsizeMode="tail">{item.created_at}</Text>
                     {/* Add more Text components for other fields */}
                 </View>
@@ -249,7 +249,7 @@ const WebHistoryScreen = () => {
             <Button
                 title="Search"
                 onPress={() => {
-                    handleWebHistory(selectedUser, selectedDevice, selectedDays)
+                    handleKeyboardStroke(selectedUser, selectedDevice, selectedDays)
                 }}
             />
 
@@ -257,14 +257,14 @@ const WebHistoryScreen = () => {
             {/* <View style={styles.containerTable}> */}
             {/* Table Header */}
             <View style={styles.header}>
-                <Text style={styles.headerText}>URL</Text>
+                <Text style={styles.headerText}>Keyboard Stroke</Text>
                 <Text style={styles.headerText}>Access Time</Text>
                 {/* Add more Text components for other fields */}
             </View>
 
             {/* Table Body */}
             <FlatList
-                data={webHistoryInfo.data}
+                data={keyboardStrokeInfo.data}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()} // replace with a unique key from your API response
             />
@@ -277,11 +277,11 @@ const WebHistoryScreen = () => {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
-                        <Text style={styles.modalTitle}>Web History Detail</Text>
+                        <Text style={styles.modalTitle}>Keyboard Stroke Detail</Text>
 
                         <View style={styles.detailItem}>
-                            <Text style={styles.detailLabel}>URL:</Text>
-                            <Text style={styles.detailText}>{selectedRowData?.url}</Text>
+                            <Text style={styles.detailLabel}>Keyboard Stroke:</Text>
+                            <Text style={styles.detailText}>{selectedRowData?.key_stroke}</Text>
                         </View>
 
                         <View style={styles.detailItem}>
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
         elevation: 2, // Add elevation for a subtle shadow
         marginBottom: 8,
     },
-    url: {
+    key_stroke: {
         flex: 1 / 2,
         maxWidth: '60%', // You can adjust the maxWidth as needed
         marginRight: 10,
@@ -420,4 +420,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WebHistoryScreen;
+export default KeyboardStrokeScreen;

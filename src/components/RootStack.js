@@ -5,6 +5,7 @@ import SettingScreen from '../screens/SettingScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageUserScreen from '../screens/ManageUser';
 import WebHistoryScreen from '../screens/WebHistoryScreen';
+import KeyboardStrokeScreen from '../screens/KeyboardStroke';
 
 const Tab = createBottomTabNavigator();
 
@@ -44,7 +45,7 @@ const RootStackScreen = ({navigation}) => (
         />
         <Tab.Screen
             name="Manage Keyboard Stroke"
-            component={SettingScreen}
+            component={KeyboardStrokeScreen}
             options={{
                 tabBarLabel: 'Keyboard',
                 tabBarIcon: ({ color, size }) => (
