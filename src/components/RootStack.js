@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageUserScreen from '../screens/ManageUser';
 import WebHistoryScreen from '../screens/WebHistoryScreen';
 import KeyboardStrokeScreen from '../screens/KeyboardStroke';
+import BlockWebsiteScreen from '../screens/BlockWebsite';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,6 +53,16 @@ const RootStackScreen = ({navigation}) => (
                     <MaterialCommunityIcons name="keyboard" color={color} size={size} />
                   ),
             }} 
+        />
+        <Tab.Screen 
+            name="Manage Block Website" 
+            component={BlockWebsiteScreen} 
+            options={{
+                tabBarLabel: 'Block',
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="block-helper" color={color} size={size} />
+                  ),
+            }}
         />
         <Tab.Screen 
             name="Setting Screen" 

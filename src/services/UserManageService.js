@@ -64,4 +64,21 @@ const KeyboardStrokeService = async (childID, deviceID, days) => {
     }
 };
 
-export {UserInfoService, WebHistoryService, KeyboardStrokeService}
+const BlockWebsiteService = async (childID, deviceID) => {
+    try {
+        const access_token = await getAccessToken();
+
+        return axios.get(`${BASE_URL}/v1/parents/block-website/${childID}/${deviceID}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
+    } catch (error) {
+        // Handle error here
+        console.error("Error in UserInfoService:", error);
+        throw error; // Throwing the error to handle it where UserInfoService is called
+    }
+};
+
+export {UserInfoService, WebHistoryService, KeyboardStrokeService, BlockWebsiteService}
